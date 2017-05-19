@@ -13,12 +13,13 @@ Dockerfile was forked from [jboss/keycloak-postgres](1) repository.
 ## Configuration
 
 Docker container can be run with following environment variables:
-* `KEYCLOAK_POSTGRES_HOST` - a hostname of Postgres database (optional, default is `postgres`). If SSL is used it must be a true domain name or IP address to validate a certificate, not linked docker container.
+* `KEYCLOAK_POSTGRES_HOST` - a hostname of Postgres database (optional, default is `postgres`).
+    If SSL is used it must be a true domain name or IP address to validate a certificate, not linked docker container.
 * `KEYCLOAK_POSTGRES_PORT` - a port of Postgres database (optional, default is `5432`).
 * `KEYCLOAK_POSTGRES_DATABASE` - a database name (optional, default is `keycloak`).
 * `KEYCLOAK_POSTGRES_USER` - a database user (optional, default is `keycloak`).
 * `KEYCLOAK_POSTGRES_PASSWORD` - a database password (required).
-* `KEYCLOAK_POSTGRES_SSL` - enables SSL connection (optional, default is `false`, values: `true`, `false`).
+* `KEYCLOAK_POSTGRES_SSL` - enables SSL connection (optional, default is `false`). Values: `true`, `false`.
 
 
 ## Usage examples
