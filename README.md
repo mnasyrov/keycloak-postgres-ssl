@@ -1,7 +1,5 @@
 # keycloak-postgres-ssl
 
-_NOTE: For testing purposes, not production ready._
-
 This docker image provides Keycloak for connecting to PostgreSQL over SSL connection.
 
 Dockerfile was forked from [jboss/keycloak-postgres](1) repository.
@@ -12,7 +10,7 @@ Dockerfile was forked from [jboss/keycloak-postgres](1) repository.
 ## Tags
 
 * `latest` - extends `jboss/keycloak:latest` image.
-* `pgdriver-42.1.1` - bundles `postgresql-42.1.1.jar` JDBC driver.
+* `pgdriver-42.1.1` - bundles `postgresql-42.1.1.jar` JDBC driver. _For testing purposes, not production ready._
 
 
 ## Configuration
