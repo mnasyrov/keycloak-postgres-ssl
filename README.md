@@ -11,7 +11,6 @@ Dockerfile was forked from [jboss/keycloak-postgres](1) repository.
 
 * `latest` - extends `jboss/keycloak:latest` image.
 * `3.2.1.Final` - extends `jboss/keycloak:3.2.1.Final` image.
-* `3.2.0.Final` - extends `jboss/keycloak:3.2.1.Final` image.
 * `pgdriver-42.1.1` - extends `jboss/keycloak:latest` image and bundles `postgresql-42.1.1.jar` JDBC driver. _For testing purposes, not production ready._
 
 
@@ -24,8 +23,9 @@ Docker container can be run with following environment variables:
 * `KEYCLOAK_POSTGRES_DATABASE` - a database name (optional, default is `keycloak`).
 * `KEYCLOAK_POSTGRES_USER` - a database user (optional, default is `keycloak`).
 * `KEYCLOAK_POSTGRES_PASSWORD` - a database password (required).
-* `KEYCLOAK_POSTGRES_SSL` - enables SSL connection (optional, default is `false`). Values: `true`, `false`.
-* `KEYCLOAK_LOGLEVEL=DEBUG` - enables DEBUG log level.
+* `KEYCLOAK_JDBC_PARAMS` - parameters of JDBC connection string.
+
+To enable SSL connection set `KEYCLOAK_JDBC_PARAMS` to `ssl=true`.
 
 
 ## Usage examples
@@ -46,7 +46,7 @@ Start a Keycloak instance and connect to the PostgreSQL instance:
 
     docker run --name keycloak \
       -e KEYCLOAK_POSTGRES_HOST=db.example.com \
-      -e KEYCLOAK_POSTGRES_SSL=true \
+      -e KEYCLOAK_JDBC_PARAMS='ssl=true' \
       -e KEYCLOAK_POSTGRES_USER=user \
       -e KEYCLOAK_POSTGRES_PASSWORD=password \
       mnasyrov/keycloak-postgres-ssl

@@ -8,7 +8,7 @@
 
     <xsl:template match="//ds:subsystem/ds:datasources/ds:datasource[@jndi-name='java:jboss/datasources/KeycloakDS']">
         <ds:datasource jndi-name="java:jboss/datasources/KeycloakDS" enabled="true" use-java-context="true" pool-name="KeycloakDS" use-ccm="true">
-            <ds:connection-url>jdbc:postgresql://${env.KEYCLOAK_POSTGRES_HOST:postgres}:${env.KEYCLOAK_POSTGRES_PORT:5432}/${env.KEYCLOAK_POSTGRES_DATABASE:keycloak}?ssl=${env.KEYCLOAK_POSTGRES_SSL:false}</ds:connection-url>
+            <ds:connection-url>jdbc:postgresql://${env.KEYCLOAK_POSTGRES_HOST:postgres}:${env.KEYCLOAK_POSTGRES_PORT:5432}/${env.KEYCLOAK_POSTGRES_DATABASE:keycloak}?${env.KEYCLOAK_JDBC_PARAMS:__nothing=1}</ds:connection-url>
             <ds:driver>postgresql</ds:driver>
             <ds:security>
               <ds:user-name>${env.KEYCLOAK_POSTGRES_USER:keycloak}</ds:user-name>
