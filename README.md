@@ -62,7 +62,7 @@ PostgreSQL JDBC Driver
       -e POSTGRES_PASSWORD=keycloak \
       -e POSTGRES_JDBC_PARAMS='sslmode=verify-ca&sslrootcert=/opt/jboss/postgres.crt.der' \
       -v ${CERTS_DIR}/postgres.crt.der:/opt/jboss/postgres.crt.der \
-      mnasyrov/keycloak-postgres-ssl
+      mnasyrov/keycloak-postgres-ssl:upstream
 
 
 ## Developing
