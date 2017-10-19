@@ -46,6 +46,6 @@ docker stop postgres-ssl
 docker stop keycloak-postgres-ssl
 
 echo "$RESULT ($STATUS)"
-if [[ "$RESULT" == "FAIL" ]]; then
+if [[ "$RESULT" != "SUCCESS" ]]; then
   exit 1
 fi
