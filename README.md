@@ -1,6 +1,6 @@
 # keycloak-postgres-ssl
 
-Keycloak docker image for using with PostgreSQL over SSL/TSL.
+Keycloak docker image for using with PostgreSQL over SSL/TLS.
 
 [![Build Status](https://travis-ci.org/mnasyrov/keycloak-postgres-ssl.svg?branch=master)](https://travis-ci.org/mnasyrov/keycloak-postgres-ssl)
 
