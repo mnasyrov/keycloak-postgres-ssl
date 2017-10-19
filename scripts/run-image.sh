@@ -12,7 +12,7 @@ if [ -f "$SCRIPT_DIR/../images/$IMAGE_TAG/run-image.sh" ] ; then
 fi
 
 
-docker run --rm --name keycloak-postgres-ssl -d -p 9080:8080 \
+docker run --rm --name keycloak-postgres-ssl -p 9080:8080 \
   --link postgres-ssl:postgres \
   -e KEYCLOAK_USER=admin \
   -e KEYCLOAK_PASSWORD=admin \

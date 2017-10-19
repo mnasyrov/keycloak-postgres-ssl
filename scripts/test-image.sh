@@ -8,9 +8,9 @@ TIMEOUT=60
 
 echo "Testing ${IMAGE} ..."
 
-"${SCRIPT_DIR}/run-postgres.sh"
+"${SCRIPT_DIR}/run-postgres.sh" &
 set -e
-"${SCRIPT_DIR}/run-image.sh" "$IMAGE_TAG"
+"${SCRIPT_DIR}/run-image.sh" "$IMAGE_TAG" &
 set +e
 
 STATUS=""
@@ -41,18 +41,11 @@ while [[ "$ATTEMPT" -lt "$TIMEOUT" && "$RESULT" == "FAIL" ]]; do
 done
 echo
 
-if [[ "$RESULT" == "FAIL" ]]; then
-  echo "Getting logs..."
-  docker logs postgres-ssl
-  docker logs keycloak-postgres-ssl
-fi
-
-echo "$RESULT ($STATUS)"
-
 echo "Stopping..."
 docker stop postgres-ssl
 docker stop keycloak-postgres-ssl
 
+echo "$RESULT ($STATUS)"
 if [[ "$RESULT" == "FAIL" ]]; then
   exit 1
 fi

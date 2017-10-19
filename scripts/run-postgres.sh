@@ -6,7 +6,7 @@ PG_DIR="${SCRIPT_DIR}/postgres"
 
 chmod og-rwx ${CERTS_DIR}/postgres.key
 
-docker run --rm --name postgres-ssl -d -p 54320:5432 \
+docker run --rm --name postgres-ssl -p 54320:5432 \
   -e POSTGRES_PASSWORD=password \
   -v ${CERTS_DIR}/postgres.crt:/srv/server.crt \
   -v ${CERTS_DIR}/postgres.key:/srv/server.key \
