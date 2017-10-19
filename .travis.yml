@@ -13,8 +13,8 @@ script:
   - |
     (
       set -euxo pipefail
-      travis_retry ./script/build-image.sh ${IMAGE_TAG}
-      ./script/test-image.sh ${IMAGE_TAG}
+      travis_retry ./scripts/build-image.sh ${IMAGE_TAG}
+      ./scripts/test-image.sh ${IMAGE_TAG}
     )
 after_script:
   - docker images
