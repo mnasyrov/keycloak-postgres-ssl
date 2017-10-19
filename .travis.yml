@@ -9,9 +9,10 @@ env:
 
 before_script:
   - env | sort
+  - docker pull postgres:9.6
 
 script:
-  - travis_retry ./scripts/build-image.sh ${IMAGE_TAG}
+  - ./scripts/build-image.sh ${IMAGE_TAG}
   - ./scripts/test-image.sh ${IMAGE_TAG}
 
 after_script:
