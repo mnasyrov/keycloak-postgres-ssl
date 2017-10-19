@@ -4,7 +4,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CERTS_DIR="${SCRIPT_DIR}/certs"
 PG_DIR="${SCRIPT_DIR}/postgres"
 
-docker run --rm --name postgres-ssl -d -p 54320:5432 \
+docker run --rm --name postgres-ssl -p 54320:5432 \
   -e POSTGRES_PASSWORD=password \
   -v ${CERTS_DIR}/postgres.crt:/srv/server.crt \
   -v ${CERTS_DIR}/postgres.key:/srv/server.key \

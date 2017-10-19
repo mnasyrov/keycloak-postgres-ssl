@@ -52,3 +52,7 @@ echo "$RESULT ($STATUS)"
 echo "Stopping..."
 docker stop postgres-ssl
 docker stop keycloak-postgres-ssl
+
+if [[ "$RESULT" == "FAIL" ]]; then
+  exit 1
+fi

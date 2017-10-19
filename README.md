@@ -2,6 +2,9 @@
 
 Keycloak docker image for using with PostgreSQL over SSL/TSL.
 
+[![Build Status](https://travis-ci.org/mnasyrov/keycloak-postgres-ssl.svg?branch=master)](https://travis-ci.org/mnasyrov/keycloak-postgres-ssl)
+
+
 This image extends the original [jboss/keycloak][keycloak] to allow specify abitrary parameters for a JDBC connection string. It is done by adding a few environment variables to `standalone.xml` and `standalone-ha.xml` configuration files.
 
 MySQL is possible supported by the latest builds but not tested.
