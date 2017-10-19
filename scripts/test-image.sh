@@ -12,9 +12,7 @@ echo "Testing ${IMAGE} ..."
 "${SCRIPT_DIR}/run-postgres.sh" &
 sleep 5
 
-set -e
 "${SCRIPT_DIR}/run-image.sh" "$IMAGE_TAG" &
-set +e
 
 STATUS=""
 ATTEMPT=0
