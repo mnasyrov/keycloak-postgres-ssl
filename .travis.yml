@@ -7,7 +7,7 @@ env:
   - IMAGE_TAG=3.2.1.Final
   - IMAGE_TAG=3.2.1.Final_pgjdbc-42.1.4
 
-before_script:
+install:
   - env | sort
   - docker pull postgres:9.6
 

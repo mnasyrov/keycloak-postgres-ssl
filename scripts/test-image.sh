@@ -6,9 +6,12 @@ IMAGE_TAG="${1:?Image tag is not specified}"
 IMAGE="mnasyrov/keycloak-postgres-ssl:${IMAGE_TAG}"
 TIMEOUT=60
 
+echo
 echo "Testing ${IMAGE} ..."
 
 "${SCRIPT_DIR}/run-postgres.sh" &
+sleep 5
+
 set -e
 "${SCRIPT_DIR}/run-image.sh" "$IMAGE_TAG" &
 set +e
