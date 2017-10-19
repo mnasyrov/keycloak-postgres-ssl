@@ -65,7 +65,7 @@ PostgreSQL JDBC Driver
       mnasyrov/keycloak-postgres-ssl:upstream
 
 
-## Developing
+## Development
 
 There are some scripts:
 
