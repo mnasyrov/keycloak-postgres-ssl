@@ -1,62 +1,78 @@
 # keycloak-postgres-ssl
 
-This docker image provides Keycloak for connecting to PostgreSQL over SSL connection.
+Keycloak docker image for using with PostgreSQL over SSL/TSL.
 
-Dockerfile was forked from [jboss/keycloak-postgres](1) repository.
+This image extends the original [jboss/keycloak][keycloak] to allow specify abitrary parameters for a JDBC connection string. It is done by adding a few environment variables to `standalone.xml` and `standalone-ha.xml` configuration files.
 
-[1]: https://github.com/jboss-dockerfiles/keycloak/tree/master/server-postgres
+MySQL is possible supported by the latest builds but not tested.
+
+For full documentation refer to [Keycloak's image page][keycloak]. Below will be described configuration of JDBC query parameters.
+
+This repo will be maintaned until Keycloak will not support abitrary JDBC parameters. There is a [JIRA ticket][jira-postgres-ssl] for PostrgeSQL.
+
+[keycloak]: https://hub.docker.com/r/jboss/keycloak/
+[jira-postgres-ssl]: https://issues.jboss.org/browse/KEYCLOAK-5231
 
 
-## Tags
+## Supported tags
 
-* `latest` - extends `jboss/keycloak:latest` image.
-* `3.2.1.Final` - extends `jboss/keycloak:3.2.1.Final` image.
-* `pgdriver-42.1.1` - extends `jboss/keycloak:latest` image and bundles `postgresql-42.1.1.jar` JDBC driver. _For testing purposes, not production ready._
+* `upstream` - follows `jboss/keycloak:latest`. It may be unstable because it is automaticaly rebuilt when `jboss/keycloak:latest` is refreshed.
+* `latest` - alias for `3.2.1.Final`.
+* `3.2.1.Final` - extends `jboss/keycloak:3.2.1.Final`.
+* `3.2.1.Final_pgjdbc-42.1.4` - extends `jboss/keycloak:3.2.1.Final` and brings the latest [PostgreSQL JDBC Driver][pgjdbc] (v42.1.4). Use on your own risk.
+
+[pgjdbc]: https://jdbc.postgresql.org
 
 
 ## Configuration
 
-Docker container can be run with following environment variables:
-* `KEYCLOAK_POSTGRES_HOST` - a hostname of Postgres database (optional, default is `postgres`).
-    If SSL is used it must be a true domain name or IP address to validate a certificate, not linked docker container.
-* `KEYCLOAK_POSTGRES_PORT` - a port of Postgres database (optional, default is `5432`).
-* `KEYCLOAK_POSTGRES_DATABASE` - a database name (optional, default is `keycloak`).
-* `KEYCLOAK_POSTGRES_USER` - a database user (optional, default is `keycloak`).
-* `KEYCLOAK_POSTGRES_PASSWORD` - a database password (required).
-* `KEYCLOAK_JDBC_PARAMS` - parameters of JDBC connection string.
+This image introduces following environment variables:
+* `KEYCLOAK_JDBC_PARAMS` - JDBC parameters, it is applied to both PostreSQL and MySQL connection strings. Mainly it is for backward compatibility.
+* `POSTGRES_JDBC_PARAMS` - parameters for PostreSQL connection string.
+* `MYSQL_JDBC_PARAMS` - parameters for MySQL connection string.
 
-To enable SSL connection set `KEYCLOAK_JDBC_PARAMS` to `ssl=true`.
+Example value of `POSTGRES_JDBC_PARAMS` is `ssl=true&sslmode=verify-ca`.
 
-
-## Usage examples
-
-### Simple case
-
-First start a PostgreSQL instance using the PostgreSQL docker image:
-
-    docker run --name postgres -e POSTGRES_DATABASE=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=password -e POSTGRES_ROOT_PASSWORD=root_password -d postgres
+For all possible values refer to documentation of drivers:
+* [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/documentation/head/connect.html)
+* [MySQL Connector/J](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-configuration-properties.html)
 
 
-Start a Keycloak instance and connect to the PostgreSQL instance:
+### Other useful docs
 
-    docker run --name keycloak --link postgres:postgres mnasyrov/keycloak-postgres-ssl
+PostgreSQL
+* [Secure TCP/IP Connections with SSL](https://www.postgresql.org/docs/current/static/ssl-tcp.html)
+* [The pg_hba.conf File](https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html)
+* [SSL Support](https://www.postgresql.org/docs/current/static/libpq-ssl.html)
+
+PostgreSQL JDBC Driver
+* [Initializing the Driver](https://jdbc.postgresql.org/documentation/head/connect.html)
+* [Using SSL](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
 
-### Connecting to an external database
+### Usage example
 
-    docker run --name keycloak \
-      -e KEYCLOAK_POSTGRES_HOST=db.example.com \
-      -e KEYCLOAK_JDBC_PARAMS='ssl=true' \
-      -e KEYCLOAK_POSTGRES_USER=user \
-      -e KEYCLOAK_POSTGRES_PASSWORD=password \
+    docker run --name keycloak-postgres-ssl -p 8080:8080 \
+      --link postgres-ssl:postgres \
+      -e KEYCLOAK_USER=admin \
+      -e KEYCLOAK_PASSWORD=admin \
+      -e POSTGRES_HOST=postgres \
+      -e POSTGRES_DATABASE=keycloak-db \
+      -e POSTGRES_USER=keycloak-user \
+      -e POSTGRES_PASSWORD=keycloak \
+      -e POSTGRES_JDBC_PARAMS='sslmode=verify-ca&sslrootcert=/opt/jboss/postgres.crt.der' \
+      -v ${CERTS_DIR}/postgres.crt.der:/opt/jboss/postgres.crt.der \
       mnasyrov/keycloak-postgres-ssl
 
 
-## Building the image
+## Developing
 
-    docker build -t mnasyrov/keycloak-postgres-ssl .
+There are some scripts:
 
+    # Build all images
+    ./scripts/build-all.sh
 
-Push to a registry:
+    # Test all images
+    ./scripts/test-all.sh
 
-    docker push mnasyrov/keycloak-postgres-ssl
+Docker files are located under `./images/`

@@ -1,0 +1,20 @@
+language: bash
+services: docker
+
+env:
+  - IMAGE_TAG=upstream
+  - IMAGE_TAG=3.2.1.Final
+  - IMAGE_TAG=3.2.1.Final_pgjdbc-42.1.4
+
+before_script:
+  - env | sort
+
+script:
+  - |
+    (
+      set -euxo pipefail
+      travis_retry ./script/build-image.sh ${IMAGE_TAG}
+      ./script/test-image.sh ${IMAGE_TAG}
+    )
+after_script:
+  - docker images

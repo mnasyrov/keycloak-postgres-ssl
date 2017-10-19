@@ -1,4 +1,6 @@
-FROM jboss/keycloak:latest
+FROM jboss/keycloak:3.2.1.Final
+
+ENV JDBC_POSTGRES_VERSION 42.1.4
 
 USER root
 RUN yum -y install ca-certificates openssl && yum clean all
@@ -19,6 +21,6 @@ RUN java -jar /usr/share/java/saxon.jar \
 
 RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main; \
     cd /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main; \
-    curl -O http://central.maven.org/maven2/org/postgresql/postgresql/9.3-1102-jdbc3/postgresql-9.3-1102-jdbc3.jar
+    curl -L -o postgres-jdbc.jar http://central.maven.org/maven2/org/postgresql/postgresql/$JDBC_POSTGRES_VERSION/postgresql-$JDBC_POSTGRES_VERSION.jar
 
 ADD module.xml /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main/
