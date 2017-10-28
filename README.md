@@ -11,7 +11,7 @@ MySQL is possible supported by the latest builds but not tested.
 
 For full documentation refer to [Keycloak's image page][keycloak]. Below will be described configuration of JDBC query parameters.
 
-This repo will be maintaned until Keycloak will not support abitrary JDBC parameters. There is a [JIRA ticket][jira-postgres-ssl] for PostrgeSQL.
+This repo will be maintained until Keycloak will not support abitrary JDBC parameters. There is a [JIRA ticket][jira-postgres-ssl] for PostrgeSQL.
 
 [keycloak]: https://hub.docker.com/r/jboss/keycloak/
 [jira-postgres-ssl]: https://issues.jboss.org/browse/KEYCLOAK-5231
@@ -19,8 +19,9 @@ This repo will be maintaned until Keycloak will not support abitrary JDBC parame
 
 ## Supported tags
 
-* `upstream` - follows `jboss/keycloak:latest`. It may be unstable because it is automaticaly rebuilt when `jboss/keycloak:latest` is refreshed.
-* `latest` - alias for `3.2.1.Final`.
+* `upstream` - follows `jboss/keycloak:latest`. It may be unstable because it is automatically rebuilt when `jboss/keycloak:latest` is refreshed.
+* `latest` - alias for `3.3.0.Final`.
+* `3.3.0.Final` - extends `jboss/keycloak:3.3.0.Final`.
 * `3.2.1.Final` - extends `jboss/keycloak:3.2.1.Final`.
 * `3.2.1.Final_pgjdbc-42.1.4` - extends `jboss/keycloak:3.2.1.Final` and brings the latest [PostgreSQL JDBC Driver][pgjdbc] (v42.1.4). Use on your own risk.
 
