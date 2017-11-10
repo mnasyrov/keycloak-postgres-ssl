@@ -4,6 +4,7 @@ services: docker
 
 env:
   - IMAGE_TAG=upstream
+  - IMAGE_TAG=3.4.0.Final
   - IMAGE_TAG=3.3.0.Final
   - IMAGE_TAG=3.2.1.Final
   - IMAGE_TAG=3.2.1.Final_pgjdbc-42.1.4
