@@ -61,7 +61,7 @@ PostgreSQL JDBC Driver
       --link postgres-ssl:postgres \
       -e KEYCLOAK_USER=admin \
       -e KEYCLOAK_PASSWORD=admin \
-      -e POSTGRES_HOST=postgres \
+      -e POSTGRES_PORT_5432_TCP_ADDR=postgres \
       -e POSTGRES_DATABASE=keycloak-db \
       -e POSTGRES_USER=keycloak-user \
       -e POSTGRES_PASSWORD=keycloak \
