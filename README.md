@@ -24,7 +24,6 @@ This repo will be maintained until Keycloak will not support abitrary JDBC param
 * `3.4.0.Final` - extends `jboss/keycloak:3.4.0.Final`.
 * `3.3.0.Final` - extends `jboss/keycloak:3.3.0.Final`.
 * `3.2.1.Final` - extends `jboss/keycloak:3.2.1.Final`.
-* `3.2.1.Final_pgjdbc-42.1.4` - extends `jboss/keycloak:3.2.1.Final` and brings the latest [PostgreSQL JDBC Driver][pgjdbc] (v42.1.4). Use on your own risk.
 
 [pgjdbc]: https://jdbc.postgresql.org
 
@@ -72,12 +71,13 @@ PostgreSQL JDBC Driver
 
 ## Development
 
-There are some scripts:
+Docker files are located under `./src`.
 
-    # Build all images
-    ./scripts/build-all.sh
+Build an image:
 
-    # Test all images
-    ./scripts/test-all.sh
+    ./scripts/build-image.sh [image_name]
 
-Docker files are located under `./images/`
+Test an image:
+    
+    ./scripts/test-all.sh [image_name]
+

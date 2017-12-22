@@ -2,17 +2,16 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-IMAGE_TAG="${1:?Image tag is not specified}"
-IMAGE="mnasyrov/keycloak-postgres-ssl:${IMAGE_TAG}"
+IMAGE_NAME="${1:-keycloak-postgres-ssl}"
 TIMEOUT=60
 
 echo
-echo "Testing ${IMAGE} ..."
+echo "Testing ${IMAGE_NAME} ..."
 
 "${SCRIPT_DIR}/run-postgres.sh" &
 sleep 5
 
-"${SCRIPT_DIR}/run-image.sh" "$IMAGE_TAG" &
+"${SCRIPT_DIR}/run-image.sh" "$IMAGE_NAME" &
 
 STATUS=""
 ATTEMPT=0
