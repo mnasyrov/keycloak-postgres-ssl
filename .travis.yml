@@ -1,22 +1,14 @@
 sudo: required
-language: bash
 services: docker
-
-env:
-  - IMAGE_TAG=upstream
-  - IMAGE_TAG=3.4.1.Final
-  - IMAGE_TAG=3.4.0.Final
-  - IMAGE_TAG=3.3.0.Final
-  - IMAGE_TAG=3.2.1.Final
-  - IMAGE_TAG=3.2.1.Final_pgjdbc-42.1.4
+language: bash
 
 install:
   - env | sort
   - docker pull postgres:9.6
 
 script:
-  - ./scripts/build-image.sh ${IMAGE_TAG}
-  - ./scripts/test-image.sh ${IMAGE_TAG}
+  - ./scripts/build-image.sh "keycloak-postgres-ssl:${TRAVIS_BRANCH}"
+  - ./scripts/test-image.sh "keycloak-postgres-ssl:${TRAVIS_BRANCH}"
 
 after_script:
   - docker images

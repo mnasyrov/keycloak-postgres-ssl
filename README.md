@@ -19,12 +19,12 @@ This repo will be maintained until Keycloak will not support abitrary JDBC param
 
 ## Supported tags
 
-* `upstream` - follows `jboss/keycloak:latest`. It may be unstable because it is automatically rebuilt when `jboss/keycloak:latest` is refreshed.
-* `latest` - alias for `3.4.0.Final`.
-* `3.4.0.Final` - extends `jboss/keycloak:3.4.0.Final`.
-* `3.3.0.Final` - extends `jboss/keycloak:3.3.0.Final`.
-* `3.2.1.Final` - extends `jboss/keycloak:3.2.1.Final`.
-* `3.2.1.Final_pgjdbc-42.1.4` - extends `jboss/keycloak:3.2.1.Final` and brings the latest [PostgreSQL JDBC Driver][pgjdbc] (v42.1.4). Use on your own risk.
+* `upstream` - alias for the `master` branch. It follows `jboss/keycloak:latest` and is automatically rebuilt, may be unstable.
+* `latest` - alias for the `stable` branch.
+* `3.4.1.Final` - based on `jboss/keycloak:3.4.1.Final` (`stable` branch).
+* `3.4.0.Final` - based on `jboss/keycloak:3.4.0.Final` (`stable` branch).
+* `3.3.0.Final` - based on `jboss/keycloak:3.3.0.Final` (`stable` branch).
+* `3.2.1.Final` - based on `jboss/keycloak:3.2.1.Final` (`stable` branch).
 
 [pgjdbc]: https://jdbc.postgresql.org
 
@@ -72,12 +72,13 @@ PostgreSQL JDBC Driver
 
 ## Development
 
-There are some scripts:
+Docker files are located under `./src`.
 
-    # Build all images
-    ./scripts/build-all.sh
+Build an image:
 
-    # Test all images
-    ./scripts/test-all.sh
+    ./scripts/build-image.sh [image_name]
 
-Docker files are located under `./images/`
+Test an image:
+    
+    ./scripts/test-all.sh [image_name]
+
