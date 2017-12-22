@@ -1,4 +1,4 @@
-FROM jboss/keycloak:3.4.1.Final
+FROM jboss/keycloak:3.4.2.Final
 
 USER root
 RUN yum -y install ca-certificates openssl && yum clean all
