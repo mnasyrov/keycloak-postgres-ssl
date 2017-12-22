@@ -21,7 +21,7 @@ This repo will be maintained until Keycloak will not support abitrary JDBC param
 
 See [a list of tags](https://hub.docker.com/r/mnasyrov/keycloak-postgres-ssl/tags/) on Docker Hub.
 * `upstream` - alias for the `master` branch. It follows `jboss/keycloak:latest` and is automatically rebuilt, may be unstable.
-* `latest` - alias for the `stable` branch.
+* `latest` - alias for the `stable` branch with tagged Keycloak versions. 
 
 
 ## Configuration
