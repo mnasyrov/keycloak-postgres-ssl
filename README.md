@@ -69,11 +69,8 @@ PostgreSQL JDBC Driver
 
 Docker files are located under `./src`.
 
-Build an image:
+Build and test an image:
 
-    ./scripts/build-image.sh [image_name]
-
-Test an image:
-    
-    ./scripts/test-all.sh [image_name]
+    ./scripts/build-image.sh
+    ./scripts/test-image.sh
 
