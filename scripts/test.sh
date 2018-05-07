@@ -11,7 +11,7 @@ echo "Testing ${IMAGE_NAME} ..."
 "${SCRIPT_DIR}/run-postgres.sh" &
 sleep 5
 
-"${SCRIPT_DIR}/run-image.sh" "$IMAGE_NAME" &
+"${SCRIPT_DIR}/run-keycloak.sh" "$IMAGE_NAME" &
 
 STATUS=""
 ATTEMPT=0
